@@ -41,7 +41,7 @@
 
 @interface REFrostedViewController ()
 
-@property (assign, readwrite, nonatomic) BOOL visible;
+@property (assign, readwrite, nonatomic) BOOL menuVisible;
 @property (assign, readwrite, nonatomic) CGSize calculatedMenuViewSize;
 
 @end
@@ -91,7 +91,7 @@
 {
     [super viewWillAppear:animated];
     
-    if(!self.frostedViewController.visible) {
+    if(!self.frostedViewController.menuVisible) {
         self.backgroundImageView.image = self.screenshotImage;
         self.backgroundImageView.frame = self.view.bounds;
         self.frostedViewController.menuViewController.view.frame = self.containerView.bounds;
@@ -235,7 +235,7 @@
             [self setContainerFrame:CGRectMake(- self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0];
         } completion:^(BOOL finished) {
-            self.frostedViewController.visible = NO;
+            self.frostedViewController.menuVisible = NO;
             [self.frostedViewController re_hideController:self];
             completionHandlerBlock();
         }];
@@ -246,7 +246,7 @@
             [self setContainerFrame:CGRectMake(self.view.frame.size.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0];
         } completion:^(BOOL finished) {
-            self.frostedViewController.visible = NO;
+            self.frostedViewController.menuVisible = NO;
             [self.frostedViewController re_hideController:self];
             completionHandlerBlock();
         }];
@@ -257,7 +257,7 @@
             [self setContainerFrame:CGRectMake(0, -self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0];
         } completion:^(BOOL finished) {
-            self.frostedViewController.visible = NO;
+            self.frostedViewController.menuVisible = NO;
             [self.frostedViewController re_hideController:self];
             completionHandlerBlock();
         }];
@@ -268,7 +268,7 @@
             [self setContainerFrame:CGRectMake(0, self.view.frame.size.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0];
         } completion:^(BOOL finished) {
-            self.frostedViewController.visible = NO;
+            self.frostedViewController.menuVisible = NO;
             [self.frostedViewController re_hideController:self];
             completionHandlerBlock();
         }];

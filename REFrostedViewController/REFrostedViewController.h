@@ -42,9 +42,12 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 
 @interface REFrostedViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIView *contentView;
+
 @property (strong, readonly, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) REFrostedViewControllerDirection direction;
+@property (assign, readonly, nonatomic) BOOL menuVisible;
 
 /**
  * The backgroundFadeAmount is how much the backgound view fades when the menu
@@ -68,6 +71,7 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
+- (void)commonInit;
 - (void)presentMenuViewController;
 - (void)hideMenuViewController;
 - (void)resizeMenuViewControllerToSize:(CGSize)size;
