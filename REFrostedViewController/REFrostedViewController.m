@@ -86,7 +86,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self re_displayController:self.contentViewController frame:self.contentView.bounds];
+    [self re_displayController:self.contentViewController frame:self.contentView.frame];
 }
 
 - (UIViewController *)childViewControllerForStatusBarStyle
