@@ -66,6 +66,7 @@
     _backgroundFadeAmount = 0.3f;
     _containerViewController = [[REFrostedContainerViewController alloc] init];
     _containerViewController.frostedViewController = self;
+	_menuViewOrigin = CGPointZero;
     _menuViewSize = CGSizeZero;
     _liveBlur = YES;
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:_containerViewController action:@selector(panGestureRecognized:)];
