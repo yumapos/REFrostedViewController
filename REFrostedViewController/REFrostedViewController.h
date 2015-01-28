@@ -57,9 +57,6 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
  * The default value is 0.3.
  */
 @property (assign, readwrite, nonatomic) CGFloat backgroundFadeAmount;
-@property (strong, readwrite, nonatomic) UIColor *blurTintColor; // Used only when live blur is off
-@property (assign, readwrite, nonatomic) CGFloat blurRadius; // Used only when live blur is off
-@property (assign, readwrite, nonatomic) CGFloat blurSaturationDeltaFactor; // Used only when live blur is off
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (assign, readwrite, nonatomic) BOOL limitMenuViewSize;
 @property (assign, readwrite, nonatomic) CGSize menuViewSize;

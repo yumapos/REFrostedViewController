@@ -25,10 +25,6 @@
 
 #import "REFrostedViewController.h"
 #import "REFrostedContainerViewController.h"
-#import "UIImage+REFrostedViewController.h"
-#import "UIView+REFrostedViewController.h"
-#import "UIViewController+REFrostedViewController.h"
-#import "RECommonFunctions.h"
 
 @interface REFrostedViewController ()
 
@@ -68,13 +64,10 @@
     _panGestureEnabled = YES;
     _animationDuration = 0.35f;
     _backgroundFadeAmount = 0.3f;
-    _blurTintColor = REUIKitIsFlatMode() ? nil : [UIColor colorWithWhite:1 alpha:0.75f];
-    _blurSaturationDeltaFactor = 1.8f;
-    _blurRadius = 10.0f;
     _containerViewController = [[REFrostedContainerViewController alloc] init];
     _containerViewController.frostedViewController = self;
     _menuViewSize = CGSizeZero;
-    _liveBlur = REUIKitIsFlatMode();
+    _liveBlur = YES;
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:_containerViewController action:@selector(panGestureRecognized:)];
     _automaticSize = YES;
 }
@@ -206,13 +199,6 @@
         self.calculatedMenuViewSize = CGSizeMake(_menuViewSize.width > 0 ? _menuViewSize.width : self.contentViewController.view.frame.size.width,
                                                  _menuViewSize.height > 0 ? _menuViewSize.height : self.contentViewController.view.frame.size.height);
     }
-    
-    if (!self.liveBlur) {
-        if (REUIKitIsFlatMode() && !self.blurTintColor) {
-            self.blurTintColor = [UIColor colorWithWhite:1 alpha:0.75f];
-        }
-        self.containerViewController.screenshotImage = [[self.contentViewController.view re_screenshot] re_applyBlurWithRadius:self.blurRadius tintColor:self.blurTintColor saturationDeltaFactor:self.blurSaturationDeltaFactor maskImage:nil];
-    }
         
     [self re_displayController:self.containerViewController frame:self.contentViewController.view.frame];
     _menuVisible = YES;
@@ -223,19 +209,11 @@
     if (!self.menuVisible) {//when call hide menu before menuViewController added to containerViewController, the menuViewController will never added to containerViewController
         return;
     }
-    if (!self.liveBlur) {
-        self.containerViewController.screenshotImage = [[self.contentViewController.view re_screenshot] re_applyBlurWithRadius:self.blurRadius tintColor:self.blurTintColor saturationDeltaFactor:self.blurSaturationDeltaFactor maskImage:nil];
-        [self.containerViewController refreshBackgroundImage];
-    }
     [self.containerViewController hideWithCompletionHandler:completionHandler];
 }
 
 - (void)resizeMenuViewControllerToSize:(CGSize)size
 {
-    if (!self.liveBlur) {
-        self.containerViewController.screenshotImage = [[self.contentViewController.view re_screenshot] re_applyBlurWithRadius:self.blurRadius tintColor:self.blurTintColor saturationDeltaFactor:self.blurSaturationDeltaFactor maskImage:nil];
-        [self.containerViewController refreshBackgroundImage];
-    }
     [self.containerViewController resizeToSize:size];
 }
 

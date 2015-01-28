@@ -24,15 +24,11 @@
 //
 
 #import "REFrostedContainerViewController.h"
-#import "UIImage+REFrostedViewController.h"
-#import "UIView+REFrostedViewController.h"
 #import "UIViewController+REFrostedViewController.h"
 #import "REFrostedViewController.h"
-#import "RECommonFunctions.h"
 
 @interface REFrostedContainerViewController ()
 
-@property (strong, readwrite, nonatomic) UIImageView *backgroundImageView;
 @property (strong, readwrite, nonatomic) NSMutableArray *backgroundViews;
 @property (strong, readwrite, nonatomic) UIView *containerView;
 @property (assign, readwrite, nonatomic) CGPoint containerOrigin;
@@ -72,9 +68,6 @@
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         toolbar.barStyle = (UIBarStyle)self.frostedViewController.liveBlurBackgroundStyle;
         [self.containerView addSubview:toolbar];
-    } else {
-        self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-        [self.containerView addSubview:self.backgroundImageView];
     }
     
     if (self.frostedViewController.menuViewController) {
@@ -92,8 +85,6 @@
     [super viewWillAppear:animated];
     
     if(!self.frostedViewController.menuVisible) {
-        self.backgroundImageView.image = self.screenshotImage;
-        self.backgroundImageView.frame = self.view.bounds;
         self.frostedViewController.menuViewController.view.frame = self.containerView.bounds;
         
         if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
@@ -131,7 +122,6 @@
     bottomBackgroundView.frame = CGRectMake(frame.origin.x, frame.size.height + frame.origin.y, frame.size.width, self.view.frame.size.height);
     
     self.containerView.frame = frame;
-    self.backgroundImageView.frame = CGRectMake(- frame.origin.x, - frame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
 }
 
 - (void)setBackgroundViewsAlpha:(CGFloat)alpha
@@ -273,11 +263,6 @@
             completionHandlerBlock();
         }];
     }
-}
-
-- (void)refreshBackgroundImage
-{
-    self.backgroundImageView.image = self.screenshotImage;
 }
 
 #pragma mark -
