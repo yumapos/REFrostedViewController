@@ -70,6 +70,8 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
 - (void)commonInit;
+- (void)setContentViewControllerDirect:(UIViewController *)contentViewController;
+- (void)setMenuViewControllerDirect:(UIViewController *)menuViewController;
 - (void)presentMenuViewController;
 - (void)hideMenuViewController;
 - (void)resizeMenuViewControllerToSize:(CGSize)size;

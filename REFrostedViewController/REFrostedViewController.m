@@ -124,6 +124,11 @@
 	_menuVisible = menuVisible;
 }
 
+- (void)setContentViewControllerDirect:(UIViewController *)contentViewController
+{
+	_contentViewController = contentViewController;
+}
+
 - (void)setContentViewController:(UIViewController *)contentViewController
 {
     if (!_contentViewController) {
@@ -145,6 +150,11 @@
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     }
+}
+
+- (void)setMenuViewControllerDirect:(UIViewController *)menuViewController
+{
+	_menuViewController = menuViewController;
 }
 
 - (void)setMenuViewController:(UIViewController *)menuViewController
